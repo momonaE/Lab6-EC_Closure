@@ -1,0 +1,64 @@
+question number 1 for a 
+1 . LE for global lexical environmet creation and execution phase 
+     le: {outer : null ,makearmy:fn} 
+      le:{outer : null ,makearmy:fn, army:[function(){alert(0)},function(){alert(1)}]} 
+2 LE for make army() creation and execution phase 
+   le: {outer : global ,arguments{length:0}}
+    le:{outer : global ,i:2,shooters:[function(){alert(0)},function(){alert(1)}],arguments{length:0}
+3. LE for while loop i =0 
+    creation and execution phase 
+    le: {outer : makearmy } 
+    le:{outer : makearmy ,shooter:function(){alert(0)},}} 
+  LE for while loop i =1 
+    creation and execution phase 
+    le: {outer : makearmy } 
+    le:{outer : makearmy ,shooter:function(){alert(1)},}}
+4. LE for  army[0]() ;
+     creation and execution phase 
+    le: {outer : closure over make army lexical env't, arguments{length:0} 
+    le:{outer : closure over make army lexical env't, arguments{length:0} 
+
+
+what will army[0] alert ?
+ will alert 2
+
+can you fox the code ?
+
+function makeArmy() {
+
+  let shooters = [];
+
+  for(let i = 0; i < 10; i++) {
+    let shooter = function() { 
+      alert( i );
+    };
+    shooters.push(shooter);
+  }
+
+  return shooters;
+}
+
+let army = makeArmy();
+
+
+
+How will the diagram change?
+1 . LE for global lexical environmet creation and execution phase 
+     le: {outer : null ,makearmy:fn} 
+     le:{outer : null ,makearmy:fn, army:[function(){alert(0)},function(){alert(1)}]} 
+2 LE for make army() creation and execution phase 
+     le: {outer : global ,arguments{length:0}}
+     le:{outer : global ,shooters:[function(){alert(0)},function(){alert(1)}],arguments{length:0}
+3. LE for forloop i =0 
+    creation and execution phase 
+     le: {outer : makearmy } 
+     le:{outer : makearmy ,shooter:function(){alert(0)}, i=0}} 
+  LE for forloop i =1 
+    creation and execution phase 
+     le: {outer : makearmy } 
+     le:{outer : makearmy ,shooter:function(){alert(1)},i=1}}
+4. LE for  army[0]() ;
+     creation and execution phase 
+    le: {outer : closure over for loop 0 lexical env't, arguments{length:0} 
+    le:{outer : closure over for loop 0lexical env't, arguments{length:0} 
+
